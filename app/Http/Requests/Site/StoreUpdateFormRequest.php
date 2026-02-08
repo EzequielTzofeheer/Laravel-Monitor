@@ -4,6 +4,8 @@ namespace App\Http\Requests\Site;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Livewire\Attributes\Rule;
+
 class StoreUpdateFormRequest extends FormRequest
 {
     /**
@@ -23,7 +25,12 @@ class StoreUpdateFormRequest extends FormRequest
     {
         return [
 
-            'url'   => 'required|url|max:255',
+            'url'   => [
+                'required',
+                'url',
+                'max:255',
+                \Illuminate\Validation\Rule::unique('sites')->where('user_id', auth()->user()->id)
+            ],
 
         ]; // return
     }
