@@ -24,8 +24,8 @@
                             </div>
 
                             <div>
-                                <a href="{{ route('site.create') }}" class="text-white bg-blue-600 hover:bg-blue-700
-                                 focus:ring-4 focus:ring-blue-300
+                                <a href="{{ route('site.create') }}" class="text-white bg-green-600 hover:bg-green-700
+                                 focus:ring-4 focus:ring-green-300
                                  shadow-md font-medium rounded-full
                                  text-sm px-4 py-2.5 focus:outline-none"
                                 >
@@ -63,7 +63,7 @@
                                         <img
                                             class="w-10 h-10 rounded-full"
                                             src="{{ asset('assets/images/www.jpg') }}">
-                                        <a href="#">
+                                        <a href="{{ route('site.edit', $site->id) }}">
                                             <div class="ps-3">
                                                 <div class="text-base font-semibold">{{ $site->user->name }}</div>
                                                 <div class="font-normal text-body">{{ $site->user->email }}</div>
@@ -72,7 +72,7 @@
                                     </th>
 
                                     <td class="px-6 py-4">
-                                        <a href="#">
+                                        <a href="{{ route('site.edit', $site->id) }}">
                                             {{ $site->url  }}
                                         </a>
                                     </td>

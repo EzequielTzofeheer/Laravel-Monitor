@@ -6,6 +6,7 @@ use App\Livewire\{
 
     Site\SiteLivewire,
     Site\SiteCreateLivewire,
+    Site\SiteEditLivewire,
 
 };
 
@@ -25,5 +26,6 @@ Route::middleware([
 
     Route::get('/site', SiteLivewire::class)->name('site');
     Route::get('/site/create', SiteCreateLivewire::class)->name('site.create');
+    Route::get('/site/{id}/edit', SiteEditLivewire::class)->name('site.edit');
 
 });

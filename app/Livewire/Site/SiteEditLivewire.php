@@ -7,25 +7,40 @@ use Livewire\Component;
 use App\Models\Site;
 use App\Http\Requests\Site\StoreUpdateFormRequest;
 
-class SiteCreateLivewire extends Component
+class SiteEditLivewire extends Component
 {
+
     public bool $isEdit = false;
+    public string $id;
     public string $url;
+
+    public function mount($id = null)
+    {
+        if ($id) {
+
+            $this->isEdit = true;
+
+            $site = Site::where('id', $this->id)->firstOrFail();
+
+            $this->url = (string) $site->url;
+        }
+    }
 
     protected function rules(): array
     {
         return (new StoreUpdateFormRequest())->rules();
     }
 
-    public function store(): void
+    public function update(): void
     {
         $this->validate();
 
         try {
 
-            Site::create([
+            $site = Site::where('id', $this->id)->firstOrFail();
+
+            $site->update([
                 'url'       => $this->url,
-                'user_id'   => auth()->user()->id,
             ]);
 
             $this->redirectRoute('site');
