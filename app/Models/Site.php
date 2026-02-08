@@ -23,7 +23,7 @@ class Site extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'url',
+        'url', 'user_id'
     ];
 
     public function user() :BelongsTo
