@@ -1,11 +1,19 @@
 <?php
 
-namespace App\Http\Requests\Site;
+namespace App\Http\Requests\Endpoint;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUpdateFormRequest extends FormRequest
 {
+    private ?string $id = null;
+
+    public function __construct(string $id = null)
+    {
+        parent::__construct();
+        $this->id = $id;
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -23,11 +31,13 @@ class StoreUpdateFormRequest extends FormRequest
     {
         return [
 
-            'url'   => [
-                'required',
-                'url',
-                'max:255',
-                \Illuminate\Validation\Rule::unique('sites')->where('user_id', auth()->user()->id)
+            'name'   => [
+                'required', 'string', 'max:255',
+                \Illuminate\Validation\Rule::unique('endpoints')->where('site_id', $this->id)
+            ],
+
+            'frequency'   => [
+                'required', 'integer',
             ],
 
         ]; // return

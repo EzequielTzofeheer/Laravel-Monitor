@@ -10,8 +10,7 @@ use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
 
 class SiteLivewire extends Component
-{
-    use WithPagination;
+{use WithPagination;
 
     use WithoutUrlPagination;
 
@@ -29,6 +28,7 @@ class SiteLivewire extends Component
             ->latest()
             ->paginate();
     }
+
 
     public function render()
     {

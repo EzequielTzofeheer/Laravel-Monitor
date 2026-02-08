@@ -11,6 +11,7 @@ class SiteEditLivewire extends Component
 {
 
     public bool $isEdit = false;
+
     public string $id;
     public string $url;
 
