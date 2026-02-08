@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -25,6 +26,17 @@ class Site extends Model
     protected $fillable = [
         'url', 'user_id'
     ];
+
+    /**
+     * @return void
+     * Filters the website by the logged-in user's ID.
+     */
+    public static function booted()
+    {
+        static::addGlobalScope('user', function (Builder $builder) {
+            $builder->where('user_id', Auth()::user()->id);
+        });
+    }
 
     public function user() :BelongsTo
     {
