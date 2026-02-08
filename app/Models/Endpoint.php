@@ -23,7 +23,7 @@ class Endpoint extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'site_id', 'endpoint', 'frequency', 'next_check',
+        'site_id', 'name', 'frequency', 'next_check',
     ];
 
     public function site() :BelongsTo

@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Sites') }}
+            {{ __("Dados do endpoint do site: $this->url") }}
         </h2>
     </x-slot>
 
@@ -24,7 +24,7 @@
                             </div>
 
                             <div>
-                                <a href="{{ route('site.create') }}" class="text-white bg-green-600 hover:bg-green-700
+                                <a href="{{ route('site.endpoint.create', $this->id) }}" class="text-white bg-green-600 hover:bg-green-700
                                  focus:ring-4 focus:ring-green-300
                                  shadow-md font-medium rounded-full
                                  text-sm px-4 py-2.5 focus:outline-none"
@@ -39,23 +39,35 @@
 
                             <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-t border-default-medium">
 
-                                <tr>
+                            <tr>
 
-                                    <th scope="col" class="p-4">
-                                        #
-                                    </th>
+                                <th scope="col" class="p-4">
+                                    Site
+                                </th>
 
-                                    <th scope="col" class="px-6 py-3 font-medium">
-                                        URL
-                                    </th>
+                                <th scope="col" class="px-6 py-3 font-medium">
+                                    Endpoint
+                                </th>
 
-                                </tr>
+                                <th scope="col" class="px-6 py-3 font-medium">
+                                    Frequência
+                                </th>
+
+                                <th scope="col" class="px-6 py-3 font-medium">
+                                    Próxima verificação
+                                </th>
+
+                                <th scope="col" class="px-6 py-3 font-medium">
+                                    Logs
+                                </th>
+
+                            </tr>
 
                             </thead>
 
                             <tbody>
 
-                            @forelse($sites  as $site)
+                            @forelse($endpoints  as $endpoint)
 
                                 <tr class="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
 
@@ -63,24 +75,35 @@
                                         <img
                                             class="w-10 h-10 rounded-full"
                                             src="{{ asset('assets/images/www.jpg') }}">
-                                        <a href="{{ route('site.edit', $site->id) }}">
+                                        <a href="{{ route('site.endpoint.edit', [$this->id, $endpoint->id]) }}">
                                             <div class="ps-3">
-                                                <div class="text-base font-semibold">{{ $site->user->name }}</div>
-                                                <div class="font-normal text-body">{{ $site->user->email }}</div>
+                                                <div class="text-base font-semibold">{{ $endpoint->site->url }}</div>
                                             </div>
                                         </a>
                                     </th>
 
                                     <td class="px-6 py-4">
-                                        <a href="{{ route('site.edit', $site->id) }}">
-                                            {{ $site->url  }}
+                                        <a href="{{ route('site.endpoint.edit', [$this->id, $endpoint->id]) }}">
+                                            {{ $endpoint->name }}
                                         </a>
                                     </td>
 
                                     <td class="px-6 py-4">
-                                        <a href="{{ route('site.endpoint', $site->id) }}">
-                                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"/>
+                                        <a href="{{ route('site.endpoint.edit', [$this->id, $endpoint->id]) }}">
+                                            {{ $endpoint->frequency }}
+                                        </a>
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <a href="{{ route('site.endpoint.edit', [$this->id, $endpoint->id]) }}">
+                                            {{ \Carbon\Carbon::parse($endpoint->next_check)->format('d/m/Y H:i:s') }}
+                                        </a>
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <a href="{{ route('site.endpoint.edit', [$this->id, $endpoint->id]) }}">
+                                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v3m5-3v3m5-3v3M1 7h7m1.506 3.429 2.065 2.065M19 7h-2M2 3h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm6 13H6v-2l5.227-5.292a1.46 1.46 0 0 1 2.065 2.065L8 16Z"/>
                                             </svg>
                                         </a>
                                     </td>
@@ -101,11 +124,11 @@
 
                             <tfoot>
 
-                                <tr>
-                                    <td colspan="5" class="px-6 py-4">
-                                        {{ $sites->links() }}
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td colspan="5" class="px-6 py-4">
+                                    {{ $endpoints->links() }}
+                                </td>
+                            </tr>
 
                             </tfoot> <!-- -->
 
