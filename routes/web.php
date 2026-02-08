@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\{
 
     Site\SiteLivewire,
+    Site\SiteCreateLivewire,
 
 };
 
@@ -23,5 +24,6 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/site', SiteLivewire::class)->name('site');
+    Route::get('/site/create', SiteCreateLivewire::class)->name('site.create');
 
 });

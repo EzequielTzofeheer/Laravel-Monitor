@@ -24,7 +24,7 @@
                             </div>
 
                             <div>
-                                <a href="#" class="text-white bg-blue-600 hover:bg-blue-700
+                                <a href="{{ route('site.create') }}" class="text-white bg-blue-600 hover:bg-blue-700
                                  focus:ring-4 focus:ring-blue-300
                                  shadow-md font-medium rounded-full
                                  text-sm px-4 py-2.5 focus:outline-none"
