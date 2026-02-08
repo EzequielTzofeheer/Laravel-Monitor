@@ -50,6 +50,20 @@ class SiteEditLivewire extends Component
         }
     }
 
+    public function destroy(): void
+    {
+        try {
+            $site = Site::where('id', $this->id)->firstOrFail();
+
+            $site->delete();
+
+            $this->redirectRoute('site');
+
+        } catch (\Exception $e) {
+            $this->showSwalError('Falha ao deletar registro: ' . $e->getMessage());
+        }
+    }
+
     public function render()
     {
         return view('livewire.site.create-edit')->layout('layouts.app');
