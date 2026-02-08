@@ -51,7 +51,7 @@ The entire environment runs inside **Docker containers**, orchestrated via **Doc
 ---
 
 
-### Docker services overview
+### 🐳 Docker services overview
 
 - **App**: PHP container running Laravel + Jetstream
 - **Queue**: Dedicated worker container for background jobs
