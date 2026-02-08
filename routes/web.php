@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Livewire\{
+
+    Site\SiteLivewire,
+    Site\SiteCreateLivewire,
+    Site\SiteEditLivewire,
+
+};
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -11,7 +19,13 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/site', SiteLivewire::class)->name('site');
+    Route::get('/site/create', SiteCreateLivewire::class)->name('site.create');
+    Route::get('/site/{id}/edit', SiteEditLivewire::class)->name('site.edit');
+
 });

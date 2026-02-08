@@ -1,27 +1,44 @@
+# Logs
 *.log
+
+# OS / Editor
 .DS_Store
+Thumbs.db
+
+# Environment
 .env
-.env.backup
-.env.production
-.phpactor.json
-.phpunit.result.cache
-/.fleet
-/.idea
-/.nova
-/.phpunit.cache
-/.vscode
-/.zed
-/auth.json
+.env.*
+!.env.example
+
+# PHP / Laravel
+/vendor
 /node_modules
+/storage
+/bootstrap/cache
+.phpunit.result.cache
+.phpactor.json
+
+# Frontend
 /public/build
 /public/hot
-/public/storage
-/storage/*.key
-/storage/pail
-/vendor
+
+# Auth / Tokens
+/auth.json
+
+# IDEs
+/.idea
+/.vscode
+/.fleet
+/.nova
+/.zed
+
+# Containers / Dev tools
+/.docker
 Homestead.json
 Homestead.yaml
-Thumbs.db
+
+# GitHub
 /.github
-/.docker
+
+# Lock files
 package-lock.json

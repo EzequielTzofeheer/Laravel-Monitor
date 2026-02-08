@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -23,8 +25,17 @@ class Site extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'url',
+        'url', 'user_id'
     ];
+
+    protected static function booted()
+    {
+        static::addGlobalScope('user', function (Builder $builder) {
+            if (!app()->runningInConsole()) {
+                $builder->where('user_id', Auth::user()->id);
+            }
+        });
+    }
 
     public function user() :BelongsTo
     {
