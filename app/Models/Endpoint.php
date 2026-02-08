@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Endpoint extends Model
+{
+    use HasUuids;
+
+    /**
+     * Define que a chave primária não é auto-incremental.
+     */
+    public $incrementing = false;
+
+    /**
+     * Define que a chave primária é do tipo string (UUID).
+     */
+    protected $keyType = 'string';
+
+    protected $fillable = [
+        'site_id', 'endpoint', 'frequency', 'next_check',
+    ];
+
+    public function site() :BelongsTo
+    {
+        return $this->belongsTo(Site::class);
+    }
+
+    public function checks() :HasMany
+    {
+        return $this->hasMany(Check::class);
+    }
+}
