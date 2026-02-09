@@ -19,7 +19,7 @@ class SiteEndpointCheckLivewire extends Component
 
     public int $status_code;
     public string $response_body;
-    public array $expanded = [];
+    public string $idEndpoint;
 
     public function mount()
     {
@@ -32,15 +32,7 @@ class SiteEndpointCheckLivewire extends Component
 
     public function checks()
     {
-        return Check::query()
-            ->when($this->search, function ($query) {
-                $query->where(function ($q) {
-                    $q->where('status_code', 'like', '%' . $this->search . '%')
-                        ->orWhere('response_body', 'like', '%' . $this->search . '%');
-                });
-            })
-            ->latest()
-            ->paginate();
+        return Check::where('endpoint_id', $this->idEndpoint)->latest()->paginate();
     }
 
     public function render()

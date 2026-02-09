@@ -63,19 +63,6 @@ services:
         networks:
             - Laravel-Monitor
 
-    queue:
-      build:
-        context: .
-        dockerfile: Dockerfile
-      command: 'php artisan queue:work'
-      restart: unless-stopped
-      volumes:
-        - ./:/var/www
-      depends_on:
-        - redis
-      networks:
-        - Laravel-Monitor
-
 networks:
     Laravel-Monitor:
         driver: bridge

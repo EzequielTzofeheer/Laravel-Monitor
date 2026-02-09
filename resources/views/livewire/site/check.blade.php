@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __("Dados do endpoint do site: $this->url") }}
+            {{ __('Dados do endpoint') }}
         </h2>
     </x-slot>
 
@@ -53,6 +53,8 @@
                             </tr>
 
                         @endforelse
+
+                        {{ $checks->links() }}
 
                     </ol> <!-- -->
 
