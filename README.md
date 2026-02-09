@@ -108,11 +108,41 @@ composer install
 php artisan key:generate
 ```
 
+8️⃣ Run the database migrations
+
+```bash
+php artisan migrate
+```
+
+9️⃣ Install the Node.js dependencies using NPM
+
+```bash
+npm install
+```
+
+9️⃣ Compile and optimize frontend assets for development or production:
+
+```bash
+npm run build
+```
+
+🔟 Start the Laravel Scheduler (Scheduled Tasks)
+
+```bash
+php artisan schedule:work
+```
+
+1️⃣1️⃣ Start the Queue Worker (Background Jobs)
+
+```bash
+php artisan queue:work
+```
+
 ---
 
 ## 🌐 Access
 
-- Application: http://localhost:809
+- Application: http://localhost:8095
 - PhpMyAdmin: http://localhost:8555
 
 ---
@@ -136,6 +166,10 @@ This repository is not a final product, but a functional and extensible foundati
 - PHP 8.3+
     - Laravel 12.x
     - Jetstream
+    - Livewire
+- UI / Frontend
+    - Tailwind CSS
+    - Flowbite
 - Docker
     - Docker Compose
 - Nginx
