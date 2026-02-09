@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Carbon\Carbon;
 
 class Check extends Model
 {
@@ -28,5 +29,10 @@ class Check extends Model
     public function endpoint() :BelongsTo
     {
         return $this->belongsTo(Endpoint::class);
+    }
+
+    public function isSucess(): bool
+    {
+        return $this->status_code >= 200 && $this->status_code < 300;
     }
 }
