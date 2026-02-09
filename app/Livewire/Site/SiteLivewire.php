@@ -32,6 +32,9 @@ class SiteLivewire extends Component
 
     public function render()
     {
+        $endpoint = \App\Models\Endpoint::latest()->first();
+        \App\Jobs\Site\EndpointCheckJob::dispatchSync($endpoint);
+
         return view('livewire.site.index', [
             'sites' => $this->sites(),
         ])->layout('layouts.app');

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Queue\Queueable;
 
 use App\Models\Endpoint;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\Response;
 
 class EndpointCheckJob implements ShouldQueue
 {
@@ -30,11 +31,25 @@ class EndpointCheckJob implements ShouldQueue
 
         $this->endpoint->checks()->create([
             'status_code'   => $response->status(),
-            'response_body' => $response->body(),
+            'response_body' => $this->responseBody($response),
         ]);
 
         $this->endpoint->update([
-           'next_check' => now()->addMinutes($this->endpoint->frequency),
+           'next_check' => $this->nextcheck(),
         ]);
+    }
+
+    private function responseBody(Response $response): string | null
+    {
+        if ($response->successful()) {
+            return null;
+        }
+
+        return (string) $response->body();
+    }
+
+    private function nextcheck()
+    {
+        return now()->addMinutes($this->endpoint->frequency);
     }
 }

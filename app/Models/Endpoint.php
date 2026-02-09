@@ -37,9 +37,9 @@ class Endpoint extends Model
     }
 
     /**
-     * Get the user's first name.
+     *
      */
-    protected function url(): string
+    public function url(): string
     {
         return $this->site->url . $this->name;
     }
