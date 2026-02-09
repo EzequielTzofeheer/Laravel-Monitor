@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Endpoint extends Model
 {
@@ -36,9 +37,6 @@ class Endpoint extends Model
         return $this->hasMany(Check::class);
     }
 
-    /**
-     *
-     */
     public function url(): string
     {
         return $this->site->url . $this->name;
