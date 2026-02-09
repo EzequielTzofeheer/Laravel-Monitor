@@ -14,6 +14,9 @@ use App\Livewire\{
     Site\SiteEndpointCreateLivewire,
     Site\SiteEndpointEditLivewire,
 
+    // Site Endpoint
+    Site\SiteEndpointCheckLivewire,
+
 };
 
 Route::get('/', function () {
@@ -39,5 +42,8 @@ Route::middleware([
     Route::get('/site/{id}/endpoint', SiteEndpointLivewire::class)->name('site.endpoint');
     Route::get('/site/{id}/endpoint/create', SiteEndpointCreateLivewire::class)->name('site.endpoint.create');
     Route::get('/site/{id}/endpoint/{idEndpoint}', SiteEndpointEditLivewire::class)->name('site.endpoint.edit');
+
+    // Site Endpoint Check (Logs)
+    Route::get('/site/{id}/endpoint/{idEndpoint}/logs', SiteEndpointCheckLivewire::class)->name('site.endpoint.check');
 
 });

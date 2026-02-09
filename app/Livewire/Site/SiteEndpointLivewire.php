@@ -8,7 +8,6 @@ use App\Models\Site;
 use App\Models\Endpoint;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
-use App\Http\Requests\Site\StoreUpdateFormRequest;
 
 class SiteEndpointLivewire extends Component
 {
@@ -23,11 +22,6 @@ class SiteEndpointLivewire extends Component
         $site = Site::where('id', $this->id)->firstOrFail();
 
         $this->url = (string) $site->url;
-    }
-
-    protected function rules(): array
-    {
-        return (new StoreUpdateFormRequest())->rules();
     }
 
     public string $search = '';

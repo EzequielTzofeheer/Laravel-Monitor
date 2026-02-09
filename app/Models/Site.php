@@ -31,7 +31,7 @@ class Site extends Model
     protected static function booted()
     {
         static::addGlobalScope('user', function (Builder $builder) {
-            if (!app()->runningInConsole()) {
+            if (! app()->runningInConsole()) {
                 $builder->where('user_id', Auth::user()->id);
             }
         });

@@ -66,20 +66,6 @@ class SiteEndpointEditLivewire extends Component
         }
     }
 
-    public function destroy(): void
-    {
-        try {
-            $endpoint = Endpoint::where('id', $this->idEndpoint)->firstOrFail();
-
-            $endpoint->delete();
-
-            $this->redirectRoute('site.endpoint', $this->id);
-
-        } catch (\Exception $e) {
-            $this->showSwalError('Falha ao deletar registro: ' . $e->getMessage());
-        }
-    }
-
     public function render()
     {
         return view('livewire.site.endpoint-create-edit')->layout('layouts.app');

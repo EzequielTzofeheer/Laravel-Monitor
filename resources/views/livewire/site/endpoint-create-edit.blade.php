@@ -42,21 +42,6 @@
                                     Voltar
                                 </a>
 
-                                @if ($isEdit)
-
-                                    <button
-                                        wire:click.prevent="destroy"
-                                        wire:confirm="Tem certeza que deseja excluir este registro?"
-                                        class="text-white bg-red-600 hover:bg-red-700
-                                        focus:ring-4 focus:ring-red-300
-                                        shadow-md font-medium rounded-full
-                                        text-sm px-4 py-2.5 focus:outline-none"
-                                    >
-                                        Excluir
-                                    </button>
-
-                                @endif
-
                             </div> <!-- p-1 flex gap-4 -->
 
                         </form>
