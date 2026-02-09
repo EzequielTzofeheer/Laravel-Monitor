@@ -28,10 +28,10 @@ class SiteEndpointLivewire extends Component
 
     public function endpoints()
     {
-        return Endpoint::query()
+        return Endpoint::where('site_id', $this->id)
             ->when($this->search, function ($query) {
                 $query->where(function ($q) {
-                    $q->where('endpoint', 'like', '%' . $this->search . '%')
+                    $q->where('name', 'like', '%' . $this->search . '%')
                         ->orWhere('frequency', 'like', '%' . $this->search . '%');
                 });
             })
