@@ -35,4 +35,12 @@ class Endpoint extends Model
     {
         return $this->hasMany(Check::class);
     }
+
+    /**
+     * Get the user's first name.
+     */
+    protected function url(): string
+    {
+        return $this->site->url . $this->name;
+    }
 }
